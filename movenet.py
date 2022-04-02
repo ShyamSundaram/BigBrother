@@ -4,7 +4,9 @@ import cv2
 from matplotlib import pyplot as plt
 import numpy as np
 
-model=hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
+#model=hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
+model=hub.load('/home/shyams/Projects/BigBrother/movenet_multipose_lightning_1')
+
 movenet=model.signatures['serving_default']
 
 
@@ -55,7 +57,7 @@ def loop_through_people(frame, keypoints_with_scores, edges, confidence_threshol
         draw_connections(frame, person, edges, confidence_threshold)
         draw_keypoints(frame, person, confidence_threshold)
 
-cap=cv2.VideoCapture(-1)
+cap=cv2.VideoCapture("data/video1.mp4")#-1)
 while cap.isOpened():
     ret,frame=cap.read()
     
