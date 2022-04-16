@@ -1,11 +1,21 @@
+from statistics import mode
 import tensorflow as tf
 import tensorflow_hub as hub
 import cv2
 from matplotlib import pyplot as plt
 import numpy as np
+import os
 
 #model=hub.load('https://tfhub.dev/google/movenet/multipose/lightning/1')
-model=hub.load('/home/shyams/Projects/BigBrother/movenet_multipose_lightning_1')
+linux_path='/home/shyams/Projects/BigBrother/movenet_multipose_lightning_1'
+windows_path='C:\Files\Academics\VIT\Project\BigBrother\multipose_lightning_1'
+model_path=''
+if os.path.exists(linux_path):
+    model_path=linux_path
+elif os.path.exists(windows_path):
+    model_path=windows_path
+
+model=hub.load(model_path)
 
 movenet=model.signatures['serving_default']
 
